@@ -1,0 +1,59 @@
+{
+  "recipes": {
+    "official": {
+      "loss": "mse",
+      "wd": 0.0,
+      "swa": 0,
+      "sev": 0.0,
+      "sev_end": false,
+      "epochs": {
+        "A": 3,
+        "B": 2,
+        "C": 8
+      }
+    },
+    "center035_sev2_end": {
+      "loss": "center",
+      "wd": 0.2,
+      "swa": 2,
+      "sev": 2.0,
+      "sev_end": true,
+      "epochs": {
+        "A": 3,
+        "B": 8,
+        "C": 12
+      }
+    },
+    "center04_end": {
+      "loss": "center",
+      "wd": 0.2,
+      "swa": 0,
+      "sev": 0.0,
+      "sev_end": false,
+      "epochs": {
+        "A": 3,
+        "B": 8,
+        "C": 12
+      }
+    },
+    "long_train_swa": {
+      "loss": "mse",
+      "wd": 0.0,
+      "swa": 2,
+      "sev": 0.0,
+      "sev_end": false,
+      "epochs": {
+        "A": 5,
+        "B": 6,
+        "C": 14
+      }
+    }
+  },
+  "default_by_dataset": {
+    "A": "official",
+    "B": "center035_sev2_end",
+    "C": "long_train_swa"
+  },
+  "max_epochs": 16,
+  "system_hint": "你是工业模型续训的决策器。只输出一个 JSON 对象，键为 recipe、epochs、hypothesis、change_summary。recipe 必须取自 allowed 列表；epochs 必须是 1..16 的整数。state.before 是父检查点在当前数据上的实测指标，state.history 是前几轮的配方与实测，请据此选择，不要复述它们。hypothesis 与 change_summary 各不超过 300 字，用中文。"
+}
